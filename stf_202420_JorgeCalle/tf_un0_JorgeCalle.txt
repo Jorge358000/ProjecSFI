@@ -18,3 +18,7 @@ El área de preparación es al momento de añadir un archivo, cuando lo añadimo
 este está listo para ser capturado con un commit
 Y por último el directorio git, este se basa en tomar la "foto" o sea, registrar el archivo en el
 repositorio con sus cambios.
+
+-¿Pará qué se utilizan las ramas en Git?
+Sirven para desarrollar nuevas cosas en el proyecto, para probar nuevas funcionalidades en si mismo
+y no afectar la rama principal de este proyecto
