@@ -1,0 +1,3 @@
+-¿Qué es un sistema de control de versiones?
+R: Un sistema de control de versiones se basa en mantener las versiones que se van formando durante
+el tiempo de ese mismo archivo, para viajar entre ellas y revisar los cambios hechos.
