@@ -10,3 +10,11 @@ repositorio en el pc de cada uno.
 -Git es un sistema de control de versiones, y Github es un sitio web de código colaborativo
 -Git se instala en el pc, Github está alojado en un sitio web.
 -Git es una herramienta con líneas de código, mientras que Github usa una interfaz gráfica
+
+-Área de trabajo, área de preparación, y directorio git.
+El área de trabajo es la ruta en la que te encuentras, donde puedes ver los archivos y las carpetas
+del proyecto.
+El área de preparación es al momento de añadir un archivo, cuando lo añadimos al repositorio y 
+este está listo para ser capturado con un commit
+Y por último el directorio git, este se basa en tomar la "foto" o sea, registrar el archivo en el
+repositorio con sus cambios.
