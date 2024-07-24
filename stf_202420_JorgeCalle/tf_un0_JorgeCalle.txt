@@ -6,3 +6,7 @@ R: El local solo te permite manejar el repositorio en el pc de su creador,
 la gestión de archivos solo se hace en el pc del creador, mientras que por otro lado el remoto
 permite que otros usuarios manejen en el repositorio, permitiendo el uso de los archivos de ese 
 repositorio en el pc de cada uno.
+-Mencione tres diferencias entre Git y Github
+-Git es un sistema de control de versiones, y Github es un sitio web de código colaborativo
+-Git se instala en el pc, Github está alojado en un sitio web.
+-Git es una herramienta con líneas de código, mientras que Github usa una interfaz gráfica
