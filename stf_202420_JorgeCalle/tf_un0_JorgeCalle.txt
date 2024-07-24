@@ -1,3 +1,8 @@
 -¿Qué es un sistema de control de versiones?
 R: Un sistema de control de versiones se basa en mantener las versiones que se van formando durante
 el tiempo de ese mismo archivo, para viajar entre ellas y revisar los cambios hechos.
+-¿Qué diferencia hay entre un repositorio local y uno remoto?
+R: El local solo te permite manejar el repositorio en el pc de su creador, 
+la gestión de archivos solo se hace en el pc del creador, mientras que por otro lado el remoto
+permite que otros usuarios manejen en el repositorio, permitiendo el uso de los archivos de ese 
+repositorio en el pc de cada uno.
