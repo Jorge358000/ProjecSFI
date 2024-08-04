@@ -2,6 +2,10 @@
 ## ¿Qué se vio?
 Se pudo notar que en el momento en el que se aumento el valor a 500 en vez de 100, se pudo observar como la velocidad del LED verde del Rapsberry disminuyo.
 Ya no iba tan rápido como iba al poner el valor en 100.
+# Experimento Ejercicio 5
+## Documentación
+En la documentación nos ofrecen una gran variedad de información sobre el Raspberry; La página de Arduino nos fácilita información acerca del programa y su software, el como nos fácilita el uso de microcontroladores para cualquier usuario.
+Otro sitio nos da más información detallada sobre este microcontrolador, a diferencia de la de Arduino que da general para todos, está da especificamente para el microcontrolador Raspberry, dónde nos explican más adetalle como configurar este microcontrolador, algunos ejemplos de código, algunas ayuda, detalles de su estructura, entre otras cosas importantes y de útilidad para el Raspberry.
 
 # Experimento ejercicio 6
 ## ¿Qué hace el código?
