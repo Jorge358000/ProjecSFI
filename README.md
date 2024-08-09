@@ -21,3 +21,12 @@ Consta de cuatro estados, el iniciarl, el de un segundo, el de dos y el de tres.
 los tres realmente tienen el mismo evento, esperan que pase el segundo para lanzar el mensaje y cambiar al siguiente estado
 ## Acciones
 Las acciones son escribir el mensaje y cambiar el estado
+# Experimento ejercicio 11
+## ¿Por qué enviaste la letra con el botón send? ¿Qué evento verifica si ha llegado algo por el puerto serial? 
+Lo que ocurre es que en el espacio donde introducimos una tecla el detecta el valor de la tecla, busca el valor y ese valor se lo da a serial.avaliable, si hay alguna tecla presionada que tiene un valor, enviará el mensaje, si no hay nada (los espacios no cuentan como un caracter) no mandará nada
+## Analiza los números que se ven debajo de las letras. Nota que luego de la r, abajo, hay un número. ¿Qué es ese número? ¿Cómo se relacionan?
+Lo que ocurre con estos números, es que son el valor que se les da, este valor se transforma a un número y que a si mismo a un lenguaje computador para asignarselo, en este caso, la r está con el 72, que pertenece a Hx.
+## ¿Qué es el 0a al final del mensaje y para qué crees que sirva?
+Ese representa el caracter hacía la nueva línea, es decir, que hará un salto de línia hacía el siguiente renglón
+
+
