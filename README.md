@@ -29,4 +29,19 @@ Lo que ocurre con estos números, es que son el valor que se les da, este valor 
 ## ¿Qué es el 0a al final del mensaje y para qué crees que sirva?
 Ese representa el caracter hacía la nueva línea, es decir, que hará un salto de línia hacía el siguiente renglón
 
+# Experimento Ejercicio 12
+## ¿Cómo se declara e inicializa un puntero?
+uint32_t *pvar = &var;
+Se declará de está manera, siendo pvar el que apunta a la dirección de var.
+## ¿Cómo se obtiene la dirección de una variable?
+La dirección de una variable es dada de forma automatica por el computador, y con los punteros se puede acceder a lo que hay almacenado en está dirección y el poder manipularlo.
+Para poder concerlo se usa el &; en el caso de C++, se usa para conocer la dirección de la memoria RAM.
+## ¿Cómo se puede leer el contenido de una variable por medio de un puntero y cómo podemos modificarlo?
+Con el puntero, escribiendo el puntero en el monitor serial.
+Y par la parte de modificarlo, se iguala el puntero al nuevo valor que se dará a la dirección asignada.
+
+
+
+
+
 
