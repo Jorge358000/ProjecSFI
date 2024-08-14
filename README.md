@@ -40,6 +40,9 @@ Para poder concerlo se usa el &; en el caso de C++, se usa para conocer la direc
 Con el puntero, escribiendo el puntero en el monitor serial.
 Y par la parte de modificarlo, se iguala el puntero al nuevo valor que se dará a la dirección asignada.
 
+# Experimento Ejercicio 15
+Se pueden observar mucho en este código, sobretodo el uso del static, y su vital importancia, el como podemos mantener los valores de la variables por todo el código con él, además de que, también se puede observar como se puede revisar todo el contenido de los arreglos por medio de los punteros, y como revisan lo que hay en esa dirección, en esa parte de la array, también se observa como al pasar el nombre de un Array lo toma desde el valor 0 por defecto (Esto claro haciendolo sin poner valores ni nada, solo el nombre del Array) y por último también nos habla de la conversión de ASCII a número, usando sus valroes en ASCII y el como podemos hacer su conversión.
+# Ejercicio 16
 
 
 
