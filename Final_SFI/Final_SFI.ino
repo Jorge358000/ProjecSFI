@@ -1,4 +1,3 @@
-
 void mision() {
     enum class TaskStates {
         CONFIG,
@@ -14,79 +13,54 @@ void mision() {
     static uint32_t Time = 5 * 1000;
     static char Value;
     static uint32_t lastime = 0;
-    static const String ACCESS_CODE = "C124";  
-
+    static const String ACCESS_CODE = "C1245";  
+    static int value = 1000;
+    static char newValue;
+    
     switch(states) {
         case TaskStates::CONFIG: {
             Serial.begin(115200);
-            
             Value = Serial.read();
             if (Value == 'S' || Value == 's' || Value == 'B' || Value == 'b') {
+                newValue = Value;
                 states = TaskStates::TIMER;
+            } else if(Value == 'L' || Value == 'l') {
+                newValue = Value;
+                states = TaskStates::CAMERA;
             }
             break;
         }
         
         case TaskStates::TIMER: {
-            if (Value == 'S' || Value == 's') {
-                if (!entrada) {
-                    Serial.print("Escriba un número mayor al actual y menor al 40, número actual: ");
-                    Serial.println(Time / 1000);
-                    entrada = true;
-                }
+            if (Serial.available() > 0) {
+                char newValue = Serial.read(); // Lee el nuevo valor
 
-                if (Serial.available() > 0) {
-                    String dato = "";
-                    while (Serial.available() > 0) {
-                        dato += (char)Serial.read();
-                        delay(5);
+                if (newValue == 'S' || newValue == 's') {
+                    if (Time < 40000) { // Asegura que no exceda los 40 segundos
+                        Time += 1000; // Incrementa en 1 segundo (1000 ms)
+                        if (!entrada) {
+                            Serial.print("Se actualizó el tiempo a ");
+                            Serial.print(Time / 1000);
+                            Serial.println(" segundos");
+                            Serial.println("L para finalizar, S para subir más y B para bajar");
+                            entrada = true;
+                        }
                     }
-
-                    int value = dato.toInt();
-                    if (value > Time / 1000 && value <= 40) {
-                        Time = value * 1000;
-                        Serial.print("El tiempo actualizado es de: ");
-                        Serial.println(Time / 1000);
-                        Serial.println("segundos");
-                        Serial.println("Para salir pulse L");
+                    entrada = false; // Permite otra operación
+                } else if (newValue == 'B' || newValue == 'b') {
+                    if (Time > 1000) { // Asegura que no baje de 1 segundo
+                        Time -= 1000; // Decrementa en 1 segundo (1000 ms)
+                        if (!entrada) {
+                            Serial.print("Se actualizó el tiempo a ");
+                            Serial.print(Time / 1000);
+                            Serial.println(" segundos");
+                            Serial.println("L para finalizar, S para subir más y B para bajar");
+                            entrada = true;
+                        }
                     }
-                }
-
-                if (Serial.available() > 0) {
-                    char Exit = Serial.read();
-                    if (Exit == 'L' || Exit == 'l') {
-                        states = TaskStates::CAMERA;
-                    }
-                }
-            } else if (Value == 'B' || Value == 'b') {
-                if (!entrada) {
-                    Serial.print("Escriba un número menor al actual y mayor al 1, número actual: ");
-                    Serial.println(Time / 1000);
-                    entrada = true;
-                }
-
-                if (Serial.available() > 0) {
-                    String dato = "";
-                    while (Serial.available() > 0) {
-                        dato += (char)Serial.read();
-                        delay(5);
-                    }
-
-                    int value = dato.toInt();
-                    if (value >= 1 && value < Time / 1000) {
-                        Time = value * 1000;
-                        Serial.print("El tiempo actualizado es de: ");
-                        Serial.println(Time / 1000);
-                        Serial.println(" segundos");
-                        Serial.println("Para salir pulse L");
-                    }
-                }
-
-                if (Serial.available() > 0) {
-                    char Exit = Serial.read();
-                    if (Exit == 'L' || Exit == 'l') {
-                        states = TaskStates::CAMERA;
-                    }
+                    entrada = false; // Permite otra operación
+                } else if (newValue == 'L' || newValue == 'l') {
+                    states = TaskStates::CAMERA; // Cambia el estado si se presiona 'L'
                 }
             }
             break;
@@ -101,7 +75,6 @@ void mision() {
                     Serial.print("Tiempo restante: ");
                     Serial.println(Time / 1000);
                 } else {
-                    
                     states = TaskStates::REACTION_NUCLEAR;
                 }
             }
@@ -117,8 +90,9 @@ void mision() {
 
         case TaskStates::REACTION_NUCLEAR: {
             Serial.println("RADIACIÓN NUCLEAR ACTIVA");
-            delay(2500);
+            delay(2000);
             Serial.print("Estás en la configuración");
+            entrada = false;
             states = TaskStates::CONFIG; 
             break;
         }
@@ -131,7 +105,6 @@ void mision() {
                     delay(5);
                 }
 
-                
                 if (codigo == ACCESS_CODE) {
                     Serial.println("SALVASTE AL MUNDO");
                     states = TaskStates::SAVE_THE_WORLD;
@@ -152,14 +125,11 @@ void mision() {
 }
 
 void setup() {
-    // put your setup code here, to run once:
-    delay(4500);
+    delay(2500);
     Serial.print("Estás en la configuración");
     mision();
 }
 
-void loop() 
-{
-    // put your main code here, to run repeatedly:
-   mision();
+void loop() {
+    mision();
 }
