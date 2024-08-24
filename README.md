@@ -29,4 +29,28 @@ Lo que ocurre con estos números, es que son el valor que se les da, este valor 
 ## ¿Qué es el 0a al final del mensaje y para qué crees que sirva?
 Ese representa el caracter hacía la nueva línea, es decir, que hará un salto de línia hacía el siguiente renglón
 
+# Experimento Ejercicio 12
+## ¿Cómo se declara e inicializa un puntero?
+uint32_t *pvar = &var;
+Se declará de está manera, siendo pvar el que apunta a la dirección de var.
+## ¿Cómo se obtiene la dirección de una variable?
+La dirección de una variable es dada de forma automatica por el computador, y con los punteros se puede acceder a lo que hay almacenado en está dirección y el poder manipularlo.
+Para poder concerlo se usa el &; en el caso de C++, se usa para conocer la dirección de la memoria RAM.
+## ¿Cómo se puede leer el contenido de una variable por medio de un puntero y cómo podemos modificarlo?
+Con el puntero, escribiendo el puntero en el monitor serial.
+Y par la parte de modificarlo, se iguala el puntero al nuevo valor que se dará a la dirección asignada.
+
+# Experimento Ejercicio 15
+Se pueden observar mucho en este código, sobretodo el uso del static, y su vital importancia, el como podemos mantener los valores de la variables por todo el código con él, además de que, también se puede observar como se puede revisar todo el contenido de los arreglos por medio de los punteros, y como revisan lo que hay en esa dirección, en esa parte de la array, también se observa como al pasar el nombre de un Array lo toma desde el valor 0 por defecto (Esto claro haciendolo sin poner valores ni nada, solo el nombre del Array) y por último también nos habla de la conversión de ASCII a número, usando sus valroes en ASCII y el como podemos hacer su conversión.
+# Ejercicio 16
+## ¿Qué pasa cuando ejecuto Serial.avaliable()?
+Este nos da el número de bytes que están disponibles para leer en el buffer en el buffer
+## Serial.read()
+Lee los bytes que hay en el buffer receptor y devuelve su valor, si está vcacio, devuelve -1, que esto avisa que no hay datos disponibles a leer.
+Así mismo este solo lee un valor por cada llamada, y ya cada byte que quieras leer, deberás llamarlo varias veces, algunas formas para hacerlo, es con bucles, para no repetir código una y otra vez, puedes utilizar bucles.
+EN un caso de no leer los datos, el bufeer los guardará hasta ser leídos o en el otro extremo, se llenará y no guardará más datos.
+
+
+
+
 
