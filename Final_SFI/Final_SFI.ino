@@ -1,4 +1,4 @@
-void setup() {
+
 void mision() {
     enum class TaskStates {
         CONFIG,
@@ -14,12 +14,12 @@ void mision() {
     static uint32_t Time = 5 * 1000;
     static char Value;
     static uint32_t lastime = 0;
-    static const String ACCESS_CODE = "1234";  
+    static const String ACCESS_CODE = "C124";  
 
     switch(states) {
         case TaskStates::CONFIG: {
             Serial.begin(115200);
-            Serial.println("CONFIG");  
+            
             Value = Serial.read();
             if (Value == 'S' || Value == 's' || Value == 'B' || Value == 'b') {
                 states = TaskStates::TIMER;
@@ -47,7 +47,7 @@ void mision() {
                         Time = value * 1000;
                         Serial.print("El tiempo actualizado es de: ");
                         Serial.println(Time / 1000);
-                        Serial.println(" segundos");
+                        Serial.println("segundos");
                         Serial.println("Para salir pulse L");
                     }
                 }
@@ -73,7 +73,7 @@ void mision() {
                     }
 
                     int value = dato.toInt();
-                    if (value > 1 && value < Time / 1000) {
+                    if (value >= 1 && value < Time / 1000) {
                         Time = value * 1000;
                         Serial.print("El tiempo actualizado es de: ");
                         Serial.println(Time / 1000);
@@ -101,6 +101,7 @@ void mision() {
                     Serial.print("Tiempo restante: ");
                     Serial.println(Time / 1000);
                 } else {
+                    
                     states = TaskStates::REACTION_NUCLEAR;
                 }
             }
@@ -116,7 +117,8 @@ void mision() {
 
         case TaskStates::REACTION_NUCLEAR: {
             Serial.println("RADIACIÓN NUCLEAR ACTIVA");
-            delay(2000);
+            delay(2500);
+            Serial.print("Estás en la configuración");
             states = TaskStates::CONFIG; 
             break;
         }
@@ -129,7 +131,7 @@ void mision() {
                     delay(5);
                 }
 
-                codigo.remove(0, 1);  
+                
                 if (codigo == ACCESS_CODE) {
                     Serial.println("SALVASTE AL MUNDO");
                     states = TaskStates::SAVE_THE_WORLD;
@@ -142,7 +144,8 @@ void mision() {
         }
 
         case TaskStates::SAVE_THE_WORLD: {
-            
+            delay(10);
+            exit(0);
             break;
         }
     }
@@ -150,10 +153,13 @@ void mision() {
 
 void setup() {
     // put your setup code here, to run once:
+    delay(4500);
+    Serial.print("Estás en la configuración");
     mision();
 }
 
-void loop() {
+void loop() 
+{
     // put your main code here, to run repeatedly:
-    mision();
+   mision();
 }
