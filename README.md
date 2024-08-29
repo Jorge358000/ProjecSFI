@@ -52,8 +52,19 @@ EN un caso de no leer los datos, el bufeer los guardará hasta ser leídos o en 
 
 
 Bonificación trabajo final:
-Diagrama de estados:
+##Diagrama de estados:
+
 ![image](https://github.com/user-attachments/assets/14becb48-c120-44a9-821c-985f95859d87)
+
+## Proceso de construcción del programa Y explicación:
+-Para la construcción de este programa lo que se hizo principalmente fue seguir el diagrama en el orden establecido, iniciando por la parte de configuración del tiempo, para esto primero se establecieron los estados del programa por los que iba a ir pasando el programa.
+Una vez está realizado los estados se inicializan y declaran las varibles que serán estaticas y que mantendran su valor al pasar el tiempo de ejecución del código, estás variables las necesitamos para usarlas en los respectivos eventos.
+ya luego el switch se usa para generar las condiciones (Entradas) para pasar de evento a evento, como por ejemplo, pulsar las teclas S, B y L, o el digitar la contraseña.
+A medida que haciamos el código, tuvimos algunos problemas de interpretación, e hicimos cosas que no se debían, por ejemplo, el tiempo aumentaba en un seg cada que se pulsaba una tecla, nosotros hicimos primero que el usuario pusiera cuánto tiempo iba a poner, lo cual no era lo indicado, ya luego si pusimos, que al pulsar cada tecla, el tiempo solo aumentará en un segundo o disminuyeraá, sin pasar los límites de 1 seg hasta 40 seg.
+En este método de tiempo una vez hace la condición por primera vez de pulsar S o B, el espera al siguiente valor, esto pasa porque solo entra una vez al if de S, B o L, y luego vuelve al inicio del evento para esperar la siguiente acción.
+Al pulsar L, pensamos como podríamos hacer una cuenta regresiva, y decidimos usar la misma que habíamos usado en el trayecto de actividades, la cual es toamr el tiempo actual en ejecución, restarlo con el anterior, verificar que esto sea mayor a uno. guardar el tiempo actual en el anterior, hacer la resta y repetir este proceso, eso lo hacemos con el fin de que el código viaja a velocidades muy grandes, entonces para que si o si espere un segundo hacemos esto.
+Una vez aquí ocurre dos consas al mismo tiempo, ya que es importante que pasen, y es que al mismo tiempo que ocurre esto, nosotros tenemos abajo otro condicional que espera a que escribas la contraseña, para hacer esto nos costo un poco saber como hacerlo, ya que solo con un string no funciona, sin embargo, descubrimos que como usamos char, hacer un bucle, un bucle el cual va agregando el caracter char uno a uno al string hasta que ya no hallan más valores, una vez ocurre eso, el verifica el string del código con la contraseña guardada, y si es correcta saltaria el mensaje y termina el código, ahora, si se pone una contraseña incorrecta y además se acaba el tiempo, el código salta a su parte negativa de la reacción, y esperaría dos segundos para volver a iniciar.
+
 
 
 
