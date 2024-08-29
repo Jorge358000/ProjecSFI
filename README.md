@@ -51,6 +51,12 @@ Así mismo este solo lee un valor por cada llamada, y ya cada byte que quieras l
 EN un caso de no leer los datos, el bufeer los guardará hasta ser leídos o en el otro extremo, se llenará y no guardará más datos.
 
 
+Bonificación trabajo final:
+Diagrama de estados:
+![image](https://github.com/user-attachments/assets/14becb48-c120-44a9-821c-985f95859d87)
+
+
+
 
 
 
