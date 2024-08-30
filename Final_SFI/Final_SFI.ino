@@ -4,7 +4,6 @@ void mision() {
         TIMER,
         CAMERA,
         REACTION_NUCLEAR,
-        ACCESS,
         SAVE_THE_WORLD
     };
 
@@ -80,26 +79,7 @@ void mision() {
             }
 
             if (Serial.available() > 0) {
-                char acces = Serial.read();
-                if (acces == 'c' || acces == 'C') {
-                    states = TaskStates::ACCESS;
-                }
-            }
-            break;
-        }
-
-        case TaskStates::REACTION_NUCLEAR: {
-            Serial.println("RADIACIÓN NUCLEAR ACTIVA");
-            delay(2000);
-            Serial.print("Estás en la configuración");
-            entrada = false;
-            states = TaskStates::CONFIG; 
-            break;
-        }
-
-        case TaskStates::ACCESS: {
-            if (Serial.available() > 0) {
-                String codigo = "";
+                 String codigo = "";
                 while (Serial.available() > 0) {
                     codigo += (char)Serial.read();
                     delay(5);
@@ -116,6 +96,16 @@ void mision() {
             break;
         }
 
+        case TaskStates::REACTION_NUCLEAR: {
+            Serial.println("RADIACIÓN NUCLEAR ACTIVA");
+            delay(2000);
+            Serial.print("Estás en la configuración");
+            entrada = false;
+            states = TaskStates::CONFIG; 
+            break;
+        }
+
+
         case TaskStates::SAVE_THE_WORLD: {
             delay(10);
             exit(0);
@@ -125,7 +115,7 @@ void mision() {
 }
 
 void setup() {
-    delay(2500);
+    delay(4000);
     Serial.print("Estás en la configuración");
     mision();
 }
