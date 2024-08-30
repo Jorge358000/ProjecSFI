@@ -65,7 +65,11 @@ En este método de tiempo una vez hace la condición por primera vez de pulsar S
 Al pulsar L, pensamos como podríamos hacer una cuenta regresiva, y decidimos usar la misma que habíamos usado en el trayecto de actividades, la cual es toamr el tiempo actual en ejecución, restarlo con el anterior, verificar que esto sea mayor a uno. guardar el tiempo actual en el anterior, hacer la resta y repetir este proceso, eso lo hacemos con el fin de que el código viaja a velocidades muy grandes, entonces para que si o si espere un segundo hacemos esto.
 Una vez aquí ocurre dos consas al mismo tiempo, ya que es importante que pasen, y es que al mismo tiempo que ocurre esto, nosotros tenemos abajo otro condicional que espera a que escribas la contraseña, para hacer esto nos costo un poco saber como hacerlo, ya que solo con un string no funciona, sin embargo, descubrimos que como usamos char, hacer un bucle, un bucle el cual va agregando el caracter char uno a uno al string hasta que ya no hallan más valores, una vez ocurre eso, el verifica el string del código con la contraseña guardada, y si es correcta saltaria el mensaje y termina el código, ahora, si se pone una contraseña incorrecta y además se acaba el tiempo, el código salta a su parte negativa de la reacción, y esperaría dos segundos para volver a iniciar.
 
-
+## Manual de usuario
+-Una vez iniciado el programa, serás enviado al modo configuración en el cual tienes la opción de pulsar tres teclas, La "S", la "B" y la "L".
+Al pulsar la tecla S aumentarás el tiempo en un segundo hasta un max de 40 seg, puedes subir el tiempo cuántas veces quieras mientras sea menor a 40; con la tecla B bajarás el tiempo en un segundo hasta un min de 1 seg, puedes bajar el tiempo cuántas veces quieras mientras sea mayor a 1; y por último, con la tecla L iniciarás la cuenta regresiva hacía la activación de la reacción.
+Mientras se hace este conteo tienes la posibilidad de poner la contraseña, está constituira de la letra "C", más otros cuatro números, por ejemplo, "C4400", ten en cuenta la cuenta regresiva seguira contando hasta que pongas correctamente la contraseña o hasta que termine.
+Si descubres la contraseña, salvarás el mundo y el código terminará, en caso de no poder, se activará el tragico final, para luego tener que esperar dos segundos y volver a inicar el código desde la configuración.
 
 
 
