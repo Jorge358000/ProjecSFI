@@ -2,44 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
-using TMPro;
-using UnityEngine.UI;
 
 public class Inicio : MonoBehaviour
 {
     private SerialPort _serialPort = new SerialPort();
+    private string comando = ""; // Para controlar qué comando se envía
+    static byte[] mensaje;
     private byte[] buffer = new byte[32];
-    public Text responseText;
-    // Start is called before the first frame update
+
     void Start()
     {
         _serialPort.PortName = "COM3";
         _serialPort.BaudRate = 115200;
         _serialPort.DtrEnable = true;
+        _serialPort.ReadTimeout = 1000; // Agregando un timeout para evitar bloqueo indefinido
         _serialPort.Open();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
+    
+                switch (comando)
+                {
+                    case "read":
+                    Debug.Log("Entra");
+                        mensaje = System.Text.Encoding.ASCII.GetBytes("read\n"); 
+                        Enviar();
+                        _serialPort.Read(buffer, 0, 20);
+                        Debug.Log("Receive Data: " + System.Text.Encoding.ASCII.GetString(buffer));
+                        comando = ""; 
+                        break;
+
+                       
+                }
 
     }
-    private void OnApplicationQuit()
+
+
+    public void Enviar()
     {
         if (_serialPort.IsOpen)
         {
-            _serialPort.Close();
+            _serialPort.Write(mensaje, 0, mensaje.Length);
+            Debug.Log("Mensaje enviado: " + System.Text.Encoding.ASCII.GetString(mensaje));
         }
-
     }
 
-    public void Enviar(string mensaje)
+    public void read()
     {
-        if (_serialPort.IsOpen)
-        {
-            _serialPort.WriteLine(mensaje);  
-            Debug.Log("Command sent: " + mensaje);
-        }
+        comando = "read";
     }
+
+   
 }
