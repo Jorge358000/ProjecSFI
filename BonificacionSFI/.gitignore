@@ -9,6 +9,7 @@ UserSettings/
 
 # Archivos generados por Visual Studio
 .vscode/
+.vs/
 *.csproj
 *.unityproj
 *.sln
