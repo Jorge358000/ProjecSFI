@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+using TMPro; // Importar TextMeshPro
 
 public class Inicio : MonoBehaviour
 {
     private SerialPort _serialPort = new SerialPort();
-    private string comando = ""; // Para controlar qué comando se envía
+    private string comando = "";
     static byte[] mensaje;
     private byte[] buffer = new byte[32];
+
+    // Variable para el objeto TextMeshPro
+    public TextMeshProUGUI estadoText; // Asignar en el Inspector
 
     void Start()
     {
         _serialPort.PortName = "COM3";
         _serialPort.BaudRate = 115200;
         _serialPort.DtrEnable = true;
-        _serialPort.ReadTimeout = 1000; // Agregando un timeout para evitar bloqueo indefinido
+        _serialPort.ReadTimeout = 1000;
         _serialPort.Open();
     }
 
@@ -42,19 +46,17 @@ public class Inicio : MonoBehaviour
 
     private IEnumerator EnviarYLeer(string mensajeAEnviar)
     {
-        // Enviar el mensaje
         mensaje = System.Text.Encoding.ASCII.GetBytes(mensajeAEnviar);
         Enviar();
 
-        // Esperar un poco para asegurarse de que la respuesta se reciba
-        yield return new WaitForSeconds(0.1f); // Ajusta el tiempo si es necesario
+        yield return new WaitForSeconds(0.1f);
 
-        // Leer la respuesta
         if (_serialPort.IsOpen)
         {
             int bytesRead = _serialPort.Read(buffer, 0, buffer.Length);
             string receivedData = System.Text.Encoding.ASCII.GetString(buffer, 0, bytesRead);
-            Debug.Log("Receive Data: " + receivedData);
+            // Actualizar el texto con los datos recibidos
+            estadoText.text = "Receive Data: " + receivedData; // Actualiza el texto
         }
     }
 
@@ -63,25 +65,21 @@ public class Inicio : MonoBehaviour
         if (_serialPort.IsOpen)
         {
             _serialPort.Write(mensaje, 0, mensaje.Length);
-            Debug.Log("Mensaje enviado: " + System.Text.Encoding.ASCII.GetString(mensaje));
         }
     }
 
     public void read()
     {
-        Debug.ClearDeveloperConsole();
         comando = "read";
     }
 
     public void outON()
     {
-        Debug.ClearDeveloperConsole();
         comando = "outON";
     }
 
     public void outOFF()
     {
-        Debug.ClearDeveloperConsole();
         comando = "outOFF";
     }
 }
