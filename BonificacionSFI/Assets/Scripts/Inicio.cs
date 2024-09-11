@@ -21,23 +21,42 @@ public class Inicio : MonoBehaviour
 
     void Update()
     {
-    
-                switch (comando)
-                {
-                    case "read":
-                    Debug.Log("Entra");
-                        mensaje = System.Text.Encoding.ASCII.GetBytes("read\n"); 
-                        Enviar();
-                        _serialPort.Read(buffer, 0, 20);
-                        Debug.Log("Receive Data: " + System.Text.Encoding.ASCII.GetString(buffer));
-                        comando = ""; 
-                        break;
+        switch (comando)
+        {
+            case "read":
+                StartCoroutine(EnviarYLeer("read\n"));
+                comando = "";
+                break;
 
-                       
-                }
+            case "outON":
+                StartCoroutine(EnviarYLeer("outON\n"));
+                comando = "";
+                break;
 
+            case "outOFF":
+                StartCoroutine(EnviarYLeer("outOFF\n"));
+                comando = "";
+                break;
+        }
     }
 
+    private IEnumerator EnviarYLeer(string mensajeAEnviar)
+    {
+        // Enviar el mensaje
+        mensaje = System.Text.Encoding.ASCII.GetBytes(mensajeAEnviar);
+        Enviar();
+
+        // Esperar un poco para asegurarse de que la respuesta se reciba
+        yield return new WaitForSeconds(0.1f); // Ajusta el tiempo si es necesario
+
+        // Leer la respuesta
+        if (_serialPort.IsOpen)
+        {
+            int bytesRead = _serialPort.Read(buffer, 0, buffer.Length);
+            string receivedData = System.Text.Encoding.ASCII.GetString(buffer, 0, bytesRead);
+            Debug.Log("Receive Data: " + receivedData);
+        }
+    }
 
     public void Enviar()
     {
@@ -50,8 +69,19 @@ public class Inicio : MonoBehaviour
 
     public void read()
     {
+        Debug.ClearDeveloperConsole();
         comando = "read";
     }
 
-   
+    public void outON()
+    {
+        Debug.ClearDeveloperConsole();
+        comando = "outON";
+    }
+
+    public void outOFF()
+    {
+        Debug.ClearDeveloperConsole();
+        comando = "outOFF";
+    }
 }

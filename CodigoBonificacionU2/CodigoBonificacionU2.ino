@@ -30,6 +30,18 @@ void loop() {
         String response = String(contador) + "," + (led ? "ON" : "OFF") + "\n";
       Serial.print(response);
       }
+      else if(datos == "outON\n"){
+        digitalWrite(LED_BUILTIN, HIGH);
+        led = true;
+        String response = String("El LED ha sido encendido") + "," + (led ? "ON" : "OFF") + "\n";
+        Serial.print(response);
+      }
+      else if(datos == "outOFF\n"){
+        digitalWrite(LED_BUILTIN, LOW);
+        led = false;
+        String response = String("El LED ha sido apagado") + "," + (led ? "ON" : "OFF") + "\n";
+        Serial.print(response);
+      }
       datos = ""; // Reinicia la variable para recibir el siguiente comando
     }
   }
